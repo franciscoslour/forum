@@ -34,7 +34,6 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter{
 		
 		if (isTokenValido) {
 			autenticarCliente(token);
-			
 		}
 		
 		filterChain.doFilter(request, response);
@@ -46,7 +45,6 @@ public class AutenticacaoViaTokenFilter extends OncePerRequestFilter{
 		Usuario usuario = this.repository.findById(idUsuario).get();
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(usuario.getEmail(), null, usuario.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
 	}
 
 	private String recuperarToken(HttpServletRequest request) {
